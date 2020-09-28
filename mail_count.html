@@ -1,0 +1,63 @@
+<!--
+Question: a function that parses a string of email data. The function takes an argument that contains the data, parses it, 
+  then produces two basic statistics about the email:
+  `- The number of email messages found in the string
+   - The date range of the email messages  'Sat Jun 25 2016 - Thu Aug 11 2016'
+Algo:
+  - split emails to individual email in an array
+  - break down each email by parts and retrieve each date in array ([ 'Date: 07-27-2016', ...])
+  - [
+      ["07", "27", "2016"],
+      ["08", "11", "2016"],
+      ["06", "25", "2016"],
+      ["07", "24", "2016"],
+      ["07", "03", "2016"]
+    ]
+
+
+  - sort the dates from first to last date
+  - 
+-->
+
+<html lang = "en">
+  <head>
+    <title>Mail Count</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script src="email_data_v2.js"></script>
+    <script>
+      
+      function mailCount(data) {
+        let emails = data.split('##||##');
+        let count = emails.length;
+        let emailDates = emails.map(email => email.split('#/#')[2]);
+        
+        console.log(`Count of Email: ${count}`);
+        console.log(`Date Range: ${displayDateRange(emailDates)}`)
+      }
+
+      function getDateObjects(dates) {
+        let dateElements = dates.map(date => date.split(' ')[1].split('-'));
+        
+        return dateElements.map(date => {
+          let month = parseInt(date[0] - 1, 10);
+          let day = parseInt(date[1], 10);
+          let year = parseInt(date[2], 10);
+          return new Date(year, month, day);
+        })
+      }
+
+
+      function displayDateRange(dates) {
+        let dateObjects = getDateObjects(dates);
+        dateObjects.sort((a,b) => a.valueOf() - b.valueOf())
+        return dateObjects[0].toDateString() + ' - ' + dateObjects[dateObjects.length - 1].toDateString();
+      }
+
+      mailCount(emailData);
+    
+    </script>
+  </body>
+
+</html>
