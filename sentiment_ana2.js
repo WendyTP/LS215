@@ -40,10 +40,11 @@ function sentiment(text) {
 
 }
 
+/*
 function removeNonLetterCharcter(word) {
   return word.replace(/\W/g, '');
 }
-
+*/
 
 let textExcerpt = 'To be or not to be-that is the question:\n' +
   'Whether \'tis nobler in the mind to suffer\n' +
