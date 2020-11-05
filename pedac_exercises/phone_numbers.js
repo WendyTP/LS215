@@ -58,7 +58,7 @@ function cleanPhoneNumbers(phoneNums) {
         return 'Invalid data type!';
   }
   
-  phoneNums = phoneNums.replace(/[\.\-\(\) ]/g, '');  // or just .replace(/^\d/g, '')
+  phoneNums = phoneNums.replace(/[\.\-\(\) ]/g, '');  // or just .replace(/\D/g, '')
   
   let phoneLength = phoneNums.length;
 
